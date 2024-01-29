@@ -39,17 +39,17 @@ class ConstantJerk:
         else:
             s_v = self.v_max * (self.v_max / self.acc_max + self.acc_max / self.jerk_max)
 
-        if self.v_max <= v_a and s > s_a:
+        if self.v_max < v_a and s >= s_a:
             return 1
-        elif self.v_max > v_a and s < s_a:
+        elif self.v_max >= v_a and s < s_a:
             return 2
-        elif self.v_max < v_a and s_a > s > s_v:
+        elif self.v_max < v_a and s_a > s >= s_v:
             return 3
         elif self.v_max < v_a and s < s_a and s < s_v:
             return 4
-        elif self.v_max > v_a and s > s_a and s >= s_v:
+        elif self.v_max >= v_a and s >= s_a and s >= s_v:
             return 5
-        elif self.v_max > v_a and s_a < s < s_v:
+        elif self.v_max >= v_a and s_a <= s < s_v:
             return 6
         else:
             return None
